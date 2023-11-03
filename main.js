@@ -2,10 +2,12 @@ const containerInfo = document.querySelector('.container');
 const perimetroDelCuadrado = document.querySelector('.perimetroDelCuadrado');
 const areaDelCuadrado = document.querySelector('.areaDelCuadrado');
 const perimetroDelTriangulo = document.querySelector('.perimetroDelTriangulo');
+const areaDelTriangulo = document.querySelector('.areaDelTriangulo');
 
 perimetroDelCuadrado.addEventListener('click', perimetroDelCuadradoF);
 areaDelCuadrado.addEventListener('click', areaDelCuadradoF);
 perimetroDelTriangulo.addEventListener('click', perimetroDelTrianguloF);
+areaDelTriangulo.addEventListener('click', areaDelTrianguloF);
 
 
 function perimetroDelCuadradoF(e){
@@ -255,6 +257,97 @@ function calcularPerimetroDelTriangulo(){
         }
 
         console.log('El perímetro del cuadrado es: ' + perimetro);
+    } else {
+        console.log('Ingresa un valor numérico');
+    }
+
+
+}
+
+function areaDelTrianguloF(e){
+    e.preventDefault();
+
+    const pDescripcionPDC = document.createElement('p');
+    pDescripcionPDC.classList.add('descriptionPDC');
+    pDescripcionPDC.innerText = 'El área de un triángulo es igual a base por altura dividido en 2.'
+
+    const formulaPDC = document.createElement('span');
+    formulaPDC.classList.add('formulaPDC');
+    formulaPDC.innerText = '(Base * Altura) / 2';
+
+    const figura = document.createElement('div')
+    figura.classList.add('triangulo');
+
+    const containerCode = document.createElement('div')
+    containerCode.classList.add('containerCode');
+    const code = document.createElement('span');
+    code.classList.add('code');
+    code.style.whiteSpace = 'pre-line';
+    code.textContent = 'const base = 3;\nconst altura = 3;\nconst areaDelTriangulo = (base * altura) / 2;';
+
+    const operacion = document.createElement('div');
+    operacion.classList.add('operacion');
+
+    const label1 = document.createElement('label');
+    const input1 = document.createElement('input');
+    input1.classList.add('input1');
+    label1.classList.add('label1');
+    label1.innerText = 'Base del triángulo';
+    input1.setAttribute('type', 'number');
+    input1.setAttribute('id', 'number');
+
+    const label2 = document.createElement('label');
+    const input2 = document.createElement('input');
+    input2.classList.add('input2');
+    label2.classList.add('label2');
+    label2.innerText = 'Altura del triángulo';
+    input2.setAttribute('type', 'number');
+    input2.setAttribute('id', 'number');
+
+
+    const button = document.createElement('button');
+    button.innerText = 'Calcular';
+    button.addEventListener('click', calcularAreaDelTriangulo);
+
+    containerCode.appendChild(code)
+
+    label1.appendChild(input1);
+    label2.appendChild(input2);
+    operacion.appendChild(label1);
+    operacion.appendChild(label2);
+    operacion.appendChild(button)
+
+    containerInfo.appendChild(pDescripcionPDC);
+    containerInfo.appendChild(formulaPDC);
+    containerInfo.appendChild(figura);
+    containerInfo.appendChild(containerCode);
+    containerInfo.appendChild(operacion);
+
+    perimetroDelTriangulo.removeEventListener('click', areaDelTrianguloF)
+}
+
+function calcularAreaDelTriangulo(){
+    const inputValue1 = document.querySelector('.input1').value
+    const inputValue2 = document.querySelector('.input2').value
+    const base = parseFloat(inputValue1);
+    const altura = parseFloat(inputValue2);
+    const triangulo = document.querySelector('.triangulo');
+
+    const resultadoElement = triangulo.querySelector('.resultadoTriangulo');
+
+    if (!isNaN(base, altura)) {
+        const area = (base * altura) / 2;
+
+        if (resultadoElement) {
+            resultadoElement.innerText = area;
+        } else {
+            const resultado = document.createElement('p');
+            resultado.classList.add('resultadoTriangulo');
+            resultado.innerText = area;
+            triangulo.appendChild(resultado);
+        }
+
+        console.log('El perímetro del cuadrado es: ' + area);
     } else {
         console.log('Ingresa un valor numérico');
     }
