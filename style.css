@@ -113,6 +113,15 @@ span {
     position: relative;
 }
 
+.circulo {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(163, 6, 147, 0.646);
+    border-radius: 50%;
+    margin: 1rem auto;
+    position: relative;
+}
+
 button {
     background-color: var(--color4);
     width: 8rem;
@@ -151,4 +160,10 @@ label {
     position: absolute;
     top: 1.2rem;
     left: -1.2rem;
+}
+
+.resultadoCirculo {
+    color: white;
+    position: absolute;
+    left: -0.8rem;
 }
